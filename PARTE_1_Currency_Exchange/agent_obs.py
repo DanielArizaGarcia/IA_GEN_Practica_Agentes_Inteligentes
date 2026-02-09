@@ -17,6 +17,7 @@ from google.adk.sessions import InMemorySessionService
 from google.adk.tools import google_search, AgentTool, ToolContext
 from google.adk.code_executors import BuiltInCodeExecutor
 from google.adk.plugins.logging_plugin import LoggingPlugin
+from count_invocation_plugin import CountInvocationPlugin
 
 print("✅ ADK components imported successfully.")
 
@@ -140,7 +141,7 @@ if __name__ == "__main__":
     import asyncio
 
     async def main():
-        currency_runner = InMemoryRunner(agent=currency_agent, plugins=[LoggingPlugin()])
+        currency_runner = InMemoryRunner(agent=currency_agent, plugins=[LoggingPlugin(), CountInvocationPlugin()])
         _ = await currency_runner.run_debug(
             "I want to convert 500 US Dollars to Euros using my Platinum Credit Card. How much will I receive?"
         )
